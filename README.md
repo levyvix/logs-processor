@@ -1,4 +1,4 @@
-# Wind Cascade
+# Logs Processor
 
 A Python project for processing and analyzing log files using modern Python tools and best practices.
 
