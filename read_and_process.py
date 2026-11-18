@@ -104,7 +104,6 @@ def process_logs(log_file_path: Path, db: Database) -> None:
                         db.insert_logs(batch)
                         batch = []
 
-            # Insert remaining logs
             if batch:
                 db.insert_logs(batch)
 
@@ -116,14 +115,11 @@ def process_logs(log_file_path: Path, db: Database) -> None:
 def main() -> None:
     """Main entry point with improved error handling and progress tracking"""
     try:
-        # Initialize database
         with Database() as db:
             db.create_table()
 
-            # Verify folders
             verify_if_log_folder_exist(LOGS_DIR, STAGING_DIR)
 
-            # Process files
             zip_files = list(LOGS_DIR.glob("*.zip"))
             if not zip_files:
                 logger.warning("No zip files found")
